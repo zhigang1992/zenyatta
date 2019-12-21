@@ -1,0 +1,19 @@
+{
+  "name": "zenyatta",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:zhigang1992/zenyatta.git",
+  "author": "Kyle Fang <zhigang1992@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "app",
+      "functions"
+    ]
+  },
+  "scripts": {
+    "app:start": "yarn workspace @zenyatta/app start",
+    "functions:start": "yarn workspace @zenyatta/functions start"
+  }
+}
