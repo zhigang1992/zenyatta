@@ -15,5 +15,21 @@
   "scripts": {
     "app:start": "yarn workspace @zenyatta/app start",
     "functions:start": "yarn workspace @zenyatta/functions start"
+  },
+  "dependencies": {
+    "husky": "^3.1.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
   }
 }
