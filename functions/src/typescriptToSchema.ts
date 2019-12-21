@@ -38,10 +38,8 @@ function getTypeDefIdentifiers(sourceFile: ts.SourceFile): ts.Identifier[] {
 }
 
 function generateSchema(sourceCode: string, idName: string) {
-  const filename = `${Math.random()
-    .toString()
-    .replace(".", "")}.ts`;
-  const prefix = "/tmp/schemaGeneration";
+  const filename = `temp.ts`;
+  const prefix = `/tmp/${Math.random()}`;
   if (!fs.existsSync(prefix)) {
     fs.mkdirSync(prefix);
   }
@@ -70,10 +68,8 @@ function generateSchema(sourceCode: string, idName: string) {
     skipTypeCheck: true,
     type: idName
   });
-  // return sourceCode;
   const schema = schemaGenerator.createSchema(idName);
   return JSON.stringify(schema, null, 4);
-  // return fs.readFileSync("/tmp/tsconfig.json");
 }
 
 export const schema = functions.https.onRequest(async (req, resp) => {
