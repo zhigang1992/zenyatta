@@ -4,8 +4,22 @@ import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 
 const Header = () => (
-  <div className="flex py-5 items-center border-b-2 border-gray-200 h-24 px-6 justify-between text-gray-600">
+  <div className="flex py-5 items-center border-b-2 border-gray-200 h-24 px-6 text-gray-600">
     <Logo />
+    <div className="flex-1" />
+    <a
+      className="block flex items-center hover:text-gray-700 mr-5"
+      href="https://twitter.com/zhigang1992"
+    >
+      <svg
+        className="fill-current w-5 h-5"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+      >
+        <title>Twitter</title>
+        <path d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67v-.53c.8-.59 1.49-1.3 2.04-2.13-.75.33-1.54.55-2.36.65a4.12 4.12 0 0 0 1.8-2.27c-.8.48-1.68.81-2.6 1a4.1 4.1 0 0 0-7 3.74 11.65 11.65 0 0 1-8.45-4.3 4.1 4.1 0 0 0 1.27 5.49C2.01 8.2 1.37 8.03.8 7.7v.05a4.1 4.1 0 0 0 3.3 4.03 4.1 4.1 0 0 1-1.86.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 0 16.4a11.62 11.62 0 0 0 6.29 1.84"></path>
+      </svg>
+    </a>
     <a
       className="block flex items-center mr-5"
       href="https://github.com/zhigang1992/zenyatta"
@@ -24,7 +38,7 @@ const Header = () => (
 
 function ProjectInfo() {
   return (
-    <div className="flex-1 mr-10">
+    <div className="flex-1 mr-20">
       <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
         A <b>strongly-typed</b>, <b>hosted</b> service for{" "}
         <span className="sm:block text-teal-500 font-normal">
@@ -75,10 +89,10 @@ function IntroVideo() {
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col bg-gray-100">
-      <div className="container mx-auto">
+    <div className="bg-gray-100">
+      <div className="flex flex-col container mx-auto h-screen">
         <Header />
-        <div className="w-full px-6 pt-16 pb-16 flex">
+        <div className="flex-1 w-full px-6 pb-20 flex items-center">
           <ProjectInfo />
           <IntroVideo />
         </div>
