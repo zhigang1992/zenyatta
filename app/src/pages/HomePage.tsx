@@ -76,11 +76,14 @@ function IntroVideo() {
     >
       <video
         className="object-center object-contain"
-        src={require("../assets/demo.mkv")}
         width="100%"
         height="100%"
         controls={true}
-      />
+      >
+        <source src={require("../assets/demo.mkv")} type="video/mkv" />
+        <source src={require("../assets/demo.mov")} type="video/mov" />
+        <source src={require("../assets/demo.mp4")} type="video/mp4" />
+      </video>
     </div>
   );
 }
