@@ -11,7 +11,7 @@ interface Value {
 const keySalt = "saltsaltsalt";
 
 export const values = functions.https.onRequest(async (req, resp) => {
-  const id = req.path.slice(1);
+  const id = req.path.match(/([^\/]*)$/)?.[0];
   if (!id) {
     resp.sendStatus(400);
     return;
@@ -30,7 +30,7 @@ export const values = functions.https.onRequest(async (req, resp) => {
 });
 
 export const json = functions.https.onRequest(async (req, resp) => {
-  const key = req.path.slice(1);
+  const key = req.path.match(/([^\/]*)$/)?.[0];
   if (!key) {
     resp.sendStatus(400);
     return;
@@ -41,7 +41,8 @@ export const json = functions.https.onRequest(async (req, resp) => {
     .doc(key);
   const snapshot = await ref.get();
   if (!snapshot.exists) {
-    resp.sendStatus(404);
+    // resp.sendStatus(404);
+    resp.send(req.path);
   } else {
     resp.json(JSON.parse(snapshot.get("value" as keyof Value)));
   }

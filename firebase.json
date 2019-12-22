@@ -20,11 +20,11 @@
         "function": "schema"
       },
       {
-        "source": "/api/values",
-        "function": "json"
+        "source": "/api/values/*",
+        "function": "values"
       },
       {
-        "source": "/api/values",
+        "source": "/api/json/*",
         "function": "json"
       },
       {
