@@ -30,6 +30,7 @@ export const values = functions.https.onRequest(async (req, resp) => {
 });
 
 export const json = functions.https.onRequest(async (req, resp) => {
+  resp.set("Access-Control-Allow-Origin", "*");
   const key = req.path.match(/([^\/]*)$/)?.[0];
   if (!key) {
     resp.sendStatus(400);

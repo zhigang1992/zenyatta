@@ -66,13 +66,12 @@ function generateSchema(sourceCode: string, idName: string) {
     tsconfig: prefix + "/tsconfig.json",
     expose: "export",
     topRef: true,
-    jsDoc: "basic",
+    jsDoc: "extended",
     sortProps: true,
     skipTypeCheck: true,
     type: idName
   });
-  const schema = schemaGenerator.createSchema(idName);
-  return schema;
+  return schemaGenerator.createSchema(idName);
 }
 
 export const schema = functions.https.onRequest(async (req, resp) => {

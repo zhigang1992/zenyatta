@@ -1,19 +1,16 @@
 import uuid from "uuid/v4";
 import React from "react";
-import { Redirect, Link } from "react-router-dom";
-import { StoreContext } from "../mobx/store";
-import NavigationBar from "../components/NavigationBar";
+import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 
 const HomePage = () => {
-  // return <Redirect to={`${uuid()}/typescript`} />;
   return (
     <div className="h-screen flex flex-col bg-gray-100">
       <div className="container mx-auto">
-        <div className="flex py-5 items-center border-b-2 border-gray-200 h-24 px-6 justify-between">
+        <div className="flex py-5 items-center border-b-2 border-gray-200 h-24 px-6 justify-between text-gray-600">
           <Logo />
           <a
-            className="block flex items-center text-gray-600 mr-5"
+            className="block flex items-center mr-5"
             href="https://github.com/zhigang1992/zenyatta"
           >
             <svg
@@ -29,7 +26,7 @@ const HomePage = () => {
         <div className="w-full px-6 pt-16 pb-40 flex">
           <div className="flex-1 mr-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
-              A strongly-typed, hosted service for{" "}
+              A <b>strongly-typed</b>, <b>hosted</b> service for{" "}
               <span className="sm:block text-teal-500 font-normal">
                 building json configurations endpoint.
               </span>
@@ -42,13 +39,13 @@ const HomePage = () => {
             <div className="flex mt-6 justify-start">
               <Link
                 to={`/${uuid()}/typescript`}
-                className="rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-teal-500 hover:bg-teal-600 md:text-lg xl:text-base text-white font-semibold leading-tight shadow-md"
+                className="rounded-lg px-4 py-4 py-3 bg-gray-700 hover:bg-gray-800 text-base text-white font-semibold leading-tight shadow-md"
               >
                 Get Started with TypeScript
               </Link>
               <Link
                 to={`/${uuid()}/jsonSchema`}
-                className="ml-4 rounded-lg px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 bg-white hover:bg-gray-200 md:text-lg xl:text-base text-gray-800 font-semibold leading-tight shadow-md"
+                className="ml-4 rounded-lg px-4 py-4 py-3 text-base bg-white hover:bg-gray-200 text-gray-800 font-semibold leading-tight shadow-md"
               >
                 or JSON Schema
               </Link>
@@ -59,6 +56,7 @@ const HomePage = () => {
             style={{ height: 360 }}
           >
             <iframe
+              title="Demo Video"
               width="100%"
               height="100%"
               src="https://www.youtube.com/embed/KAy5pK0IRIc"

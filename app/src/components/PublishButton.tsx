@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import Loader from "./Loader";
 import { StoreContext } from "../mobx/store";
+import "animate.css/animate.min.css";
 
 const Link = (props: { label: string; value: string }) => {
   const input = useRef<HTMLInputElement>(null);
@@ -59,10 +60,11 @@ const PublishButton = () => {
         <>
           <div className="fixed flex items-center justify-center top-0 left-0 h-full w-full z-10">
             <button
-              className="fixed top-0 left-0 h-full w-full cursor-default bg-black opacity-25"
+              className="animated faster fadeIn fixed top-0 left-0 h-full w-full cursor-default"
+              style={{ backgroundColor: "rgba(0,0,0,0.25)" }}
               onClick={() => setPublishedKey(undefined)}
             />
-            <div className="flex bg-white rounded-lg shadow-lg flex-col items-center py-4 px-10 z-10">
+            <div className="animated faster bounceInUp flex bg-white rounded-lg shadow-lg flex-col items-center py-4 px-10 z-10">
               <img
                 src={require("../assets/cloud.svg")}
                 alt="Success"

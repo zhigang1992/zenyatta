@@ -4,18 +4,32 @@ import Ajv from "ajv";
 
 const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
 
-export interface User2 {
-  name: string
-  age: number
+enum Gender {
+  male = "Male",
+  female = "Female"
 }
+
 export interface User {
+  /**
+   * User Name
+   */
   name: string
+
+  /**
+   * Age bigger than 10.
+   *
+   * @minimum 10
+   * @TJS-type integer
+   */
   age: number
+
+  avatar?: string
+  
+  gender?: Gender
 }
 `;
 
-const SchemaPlaceholder = `
-{
+const SchemaPlaceholder = `{
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$ref": "#/definitions/User",
     "definitions": {
@@ -23,10 +37,23 @@ const SchemaPlaceholder = `
             "type": "object",
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "User Name"
                 },
                 "age": {
-                    "type": "number"
+                    "type": "number",
+                    "description": "Age bigger than 10.",
+                    "minimum": 10
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string",
+                    "enum": [
+                        "Male",
+                        "Female"
+                    ]
                 }
             },
             "required": [
@@ -36,8 +63,7 @@ const SchemaPlaceholder = `
             "additionalProperties": false
         }
     }
-}
-`;
+}`;
 export class Store {
   constructor(id: string) {
     this.id = id;

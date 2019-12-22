@@ -18,7 +18,7 @@ const ActionButton = () => {
           history.push("./editJson");
         }}
       >
-        Start editing Data
+        Start editing data
       </button>
     </Fill>
   );
