@@ -3,11 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import { observer } from "mobx-react";
 import { StoreContext } from "../mobx/store";
 
-const Section = (props: any) => (
+const Section = (props: { title: string }) => (
   <h5
     {...props}
     className="mb-3 text-gray-500 uppercase tracking-wide font-bold text-sm lg:text-xs"
-  />
+  >
+    {props.title}
+  </h5>
 );
 
 const Item = (props: { active: boolean; title: string; to: string }) => {
@@ -30,7 +32,7 @@ const LeftSideBar = () => {
   const { startWith } = useParams<{ startWith: string }>();
   return (
     <div className="flex flex-shrink-0 w-48 flex-col py-5">
-      <Section>Get Started with</Section>
+      <Section title="Get Started with" />
       <Item
         title="TypeScript"
         to="./typescript"
@@ -42,7 +44,7 @@ const LeftSideBar = () => {
         active={startWith === "jsonSchema"}
       />
       <div className={`mt-8 ${store.startedEditingData ? "" : "opacity-50"}`}>
-        <Section>Edit Data</Section>
+        <Section title="Edit Data" />
         <Item
           title="Edit JSON"
           to="./editJson"

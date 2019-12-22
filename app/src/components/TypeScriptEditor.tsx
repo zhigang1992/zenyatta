@@ -93,8 +93,10 @@ const ActionButton = () => {
                 Select root type
               </p>
               {selections.map(selection => (
-                <a
-                  onClick={async () => {
+                <button
+                  key={selection}
+                  onClick={async e => {
+                    e.preventDefault();
                     try {
                       setSelections([]);
                       await generateSchema(selection);
@@ -103,10 +105,10 @@ const ActionButton = () => {
                       setLoading(false);
                     }
                   }}
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-800 hover:text-white"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-800 hover:text-white focus:outline-none text-left w-full"
                 >
                   {selection}
-                </a>
+                </button>
               ))}
             </div>
           </>

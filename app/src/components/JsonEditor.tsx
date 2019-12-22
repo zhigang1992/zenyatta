@@ -60,7 +60,7 @@ const JsonEditor = observer(() => {
           });
         }}
         onChange={value => {
-          store.schema = value;
+          store.json = value;
         }}
       />
     </div>
