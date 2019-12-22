@@ -28,7 +28,7 @@ const HomePage = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">
               A <b>strongly-typed</b>, <b>hosted</b> service for{" "}
               <span className="sm:block text-teal-500 font-normal">
-                building json configurations endpoint.
+                building JSON configurations endpoint.
               </span>
             </h1>
             <p className="mt-6 leading-relaxed text-lg text-gray-600">
@@ -59,7 +59,7 @@ const HomePage = () => {
               title="Demo Video"
               width="100%"
               height="100%"
-              src="https://www.youtube.com/embed/KAy5pK0IRIc"
+              src="https://www.youtube.com/embed/gpXOlJHTS-g"
               frameBorder={0}
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen={true}
