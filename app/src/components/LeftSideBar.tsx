@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import { observer } from "mobx-react";
+import { StoreContext } from "../mobx/store";
 
 const Section = (props: any) => (
   <h5
@@ -24,6 +26,7 @@ const Item = (props: { active: boolean; title: string; to: string }) => {
 };
 
 const LeftSideBar = () => {
+  const store = useContext(StoreContext);
   const { startWith } = useParams<{ startWith: string }>();
   return (
     <div className="flex flex-shrink-0 w-48 flex-col py-5">
@@ -38,21 +41,21 @@ const LeftSideBar = () => {
         to="./jsonSchema"
         active={startWith === "jsonSchema"}
       />
-      <div className="mt-8 opacity-50">
+      <div className={`mt-8 ${store.startedEditingData ? "" : "opacity-50"}`}>
         <Section>Edit Data</Section>
         <Item
           title="Edit JSON"
-          to="./typescript"
-          active={startWith === "editjson"}
+          to="./editJson"
+          active={startWith === "editJson"}
         />
         <Item
           title="Edit with UI"
-          to="./jsonSchema"
-          active={startWith === "editui"}
+          to="./editUI"
+          active={startWith === "editUI"}
         />
       </div>
     </div>
   );
 };
 
-export default LeftSideBar;
+export default observer(LeftSideBar);

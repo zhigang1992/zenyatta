@@ -7,7 +7,7 @@ import Loader from "./Loader";
 import { Fill } from "react-slot-fill";
 import { navigationBarItemSlot } from "./NavigationBar";
 
-const RightSideBar = () => {
+const ActionButton = () => {
   const store = useContext(StoreContext);
   const history = useHistory();
   const [loading, setLoading] = useState(false);
@@ -58,7 +58,7 @@ const RightSideBar = () => {
           <Loader />
         ) : (
           <button
-            className="bg-gray-800 h-10 rounded font-bold text-white px-6 focus:outline-none"
+            className="nav-btn"
             disabled={loading}
             onClick={async () => {
               try {
@@ -127,7 +127,10 @@ export const TypeScriptEditor = observer(() => {
           language="typescript"
           theme="vs-light"
           options={{
-            fontSize: 18
+            autoIndent: "brackets",
+            fontSize: 18,
+            formatOnType: true,
+            formatOnPaste: true
           }}
           value={store.typescript}
           onChange={value => {
@@ -135,7 +138,7 @@ export const TypeScriptEditor = observer(() => {
           }}
         />
       </div>
-      <RightSideBar />
+      <ActionButton />
     </>
   );
 });

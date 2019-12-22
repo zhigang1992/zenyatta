@@ -5,6 +5,8 @@ export class Store {
   @observable id?: string;
   @observable typescript = TypescriptPlaceholder;
   @observable schema = SchemaPlaceholder;
+  @observable json: string = "{}";
+  @observable startedEditingData = false;
 }
 
 export const StoreContext = createContext(new Store());
