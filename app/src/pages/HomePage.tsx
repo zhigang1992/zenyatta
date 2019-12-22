@@ -76,7 +76,7 @@ function IntroVideo() {
     >
       <video
         className="object-center object-contain"
-        src={require("../assets/demo.mp4")}
+        src={require("../assets/demo.mkv")}
         width="100%"
         height="100%"
         controls={true}
