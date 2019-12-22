@@ -14,9 +14,11 @@
   },
   "scripts": {
     "app:start": "yarn workspace @zenyatta/app start",
-    "functions:start": "yarn workspace @zenyatta/functions start"
+    "functions:start": "yarn workspace @zenyatta/functions start",
+    "deploy": "firebase deploy"
   },
   "dependencies": {
+    "firebase-tools": "^7.11.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1"
