@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 interface Value {
   source: string;
-  schema: string;
+  schema: any;
   value: any;
 }
 
