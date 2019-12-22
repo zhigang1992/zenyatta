@@ -35,7 +35,7 @@ const SchemaEditor = observer(() => {
         language="json"
         theme="vs-light"
         options={{
-          fontSize: 18,
+          fontSize: 16,
           autoIndent: "brackets",
           formatOnType: true,
           formatOnPaste: true

@@ -107,7 +107,7 @@ export const TypeScriptEditor = observer(() => {
           theme="vs-light"
           options={{
             autoIndent: "brackets",
-            fontSize: 18,
+            fontSize: 16,
             formatOnType: true,
             formatOnPaste: true
           }}
