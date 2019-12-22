@@ -28,7 +28,7 @@ const ActionButton = () => {
           SchemaRootType: root
         }
       });
-      store.schema = JSON.stringify(await schema.json(), null, 2);
+      store.schema = JSON.stringify(await schema.json(), null, 4);
       history.push("./jsonSchema");
     },
     [store, history]

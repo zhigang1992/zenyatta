@@ -5,19 +5,7 @@ import React, { useContext } from "react";
 import { observer } from "mobx-react";
 import { StoreContext } from "../mobx/store";
 import MonacoEditor from "react-monaco-editor";
-
-const PublishButton = () => {
-  return (
-    <button
-      className="nav-btn"
-      onClick={() => {
-        // TODO
-      }}
-    >
-      Publish
-    </button>
-  );
-};
+import PublishButton from "./PublishButton";
 
 const JsonEditor = observer(() => {
   const store = useContext(StoreContext);

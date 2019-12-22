@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { TypeScriptEditor } from "./TypeScriptEditor";
 import SchemaEditor from "./SchemaEditor";
 import JsonEditor from "./JsonEditor";
+import UIEditor from "./UIEditor";
 
 export default () => {
   const { startWith } = useParams<{ startWith: string }>();
@@ -13,6 +14,8 @@ export default () => {
       return <SchemaEditor />;
     case "editJson":
       return <JsonEditor />;
+    case "editUI":
+      return <UIEditor />;
     default:
       return <div>Not Implemented</div>;
   }
