@@ -9,6 +9,15 @@ enum Gender {
   female = "Female"
 }
 
+// Types marked as exported will be 
+// Converted into a ref
+export interface Hobby {
+  name: string;
+  image?: string;
+}
+
+// If you have multiple exported Type
+// You need to select one as root
 export interface User {
   /**
    * User Name
@@ -26,6 +35,8 @@ export interface User {
   avatar?: string
   
   gender?: Gender
+
+  Hobbies: Hobby[]
 }
 `;
 
