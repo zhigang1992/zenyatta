@@ -1,5 +1,4 @@
 import React from "react";
-import MonacoEditor from "react-monaco-editor";
 import NavigationBar from "../components/NavigationBar";
 import Editor from "../components/Editor";
 import LeftSideBar from "../components/LeftSideBar";

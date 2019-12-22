@@ -1,15 +1,10 @@
 import MonacoEditor from "react-monaco-editor";
-import React from "react";
-
-const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
-
-interface User {
-  name: string
-  age: number
-}
-`;
+import React, { useContext } from "react";
+import { StoreContext } from "../mobx/store";
+import { observer } from "mobx-react";
 
 const Editor = () => {
+  const store = useContext(StoreContext);
   return (
     <div className="flex flex-1 overflow-scroll">
       <MonacoEditor
@@ -20,10 +15,13 @@ const Editor = () => {
         options={{
           fontSize: 18
         }}
-        value={TypescriptPlaceholder}
+        value={store.typescript}
+        onChange={value => {
+          store.typescript = value;
+        }}
       />
     </div>
   );
 };
 
-export default Editor;
+export default observer(Editor);

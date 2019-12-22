@@ -73,7 +73,6 @@ function generateSchema(sourceCode: string, idName: string) {
 }
 
 export const schema = functions.https.onRequest(async (req, resp) => {
-  resp.set("Access-Control-Allow-Origin", "*");
   if (req.method !== "POST") {
     resp.sendStatus(405);
     return;
@@ -85,19 +84,18 @@ export const schema = functions.https.onRequest(async (req, resp) => {
   }
   try {
     const sourceCode = req.rawBody.toString("utf-8");
-    resp.send(generateSchema(sourceCode, rootIdentifier));
+    resp.json(generateSchema(sourceCode, rootIdentifier));
   } catch (e) {
     resp.status(500).send(e.message);
   }
 });
 
 export const identifiers = functions.https.onRequest(async (req, resp) => {
-  resp.set("Access-Control-Allow-Origin", "*");
   if (req.method !== "POST") {
     resp.sendStatus(405);
     return;
   }
   const source = createSource(req.rawBody.toString("utf-8"));
   const ids = getTypeDefIdentifiers(source).map(i => i.escapedText.toString());
-  resp.send(ids);
+  resp.json(ids);
 });
