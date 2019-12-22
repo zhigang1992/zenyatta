@@ -1,18 +1,20 @@
 import React from "react";
 import MonacoEditor from "react-monaco-editor";
+import NavigationBar from "../components/NavigationBar";
+import Editor from "../components/Editor";
+import LeftSideBar from "../components/LeftSideBar";
+import RightSideBar from "../components/RightSideBar";
 
 const TypeScriptPage = () => {
   return (
-    <MonacoEditor
-      width="100%"
-      height="100vh"
-      language="typescript"
-      theme="vs-light"
-      options={{
-        fontSize: 18
-      }}
-      value=""
-    />
+    <div className="h-screen flex flex-col">
+      <NavigationBar />
+      <div className="flex container mx-auto flex-1">
+        <LeftSideBar />
+        <Editor />
+        <RightSideBar />
+      </div>
+    </div>
   );
 };
 

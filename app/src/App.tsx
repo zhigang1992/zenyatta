@@ -6,7 +6,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/typescript">
+        <Route path="/start/:startWith">
           <TypeScriptPage />
         </Route>
       </Switch>
