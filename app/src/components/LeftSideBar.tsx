@@ -43,19 +43,21 @@ const LeftSideBar = () => {
         to="./jsonSchema"
         active={startWith === "jsonSchema"}
       />
-      <div className={`mt-8 ${store.startedEditingData ? "" : "opacity-50"}`}>
-        <Section title="Edit Data" />
-        <Item
-          title="Edit JSON"
-          to="./editJson"
-          active={startWith === "editJson"}
-        />
-        <Item
-          title="Edit with UI"
-          to="./editUI"
-          active={startWith === "editUI"}
-        />
-      </div>
+      {store.startedEditingData && (
+        <div className="mt-8">
+          <Section title="Edit Data" />
+          <Item
+            title="Edit JSON"
+            to="./editJson"
+            active={startWith === "editJson"}
+          />
+          <Item
+            title="Edit with UI"
+            to="./editUI"
+            active={startWith === "editUI"}
+          />
+        </div>
+      )}
     </div>
   );
 };

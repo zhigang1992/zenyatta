@@ -48,6 +48,20 @@ export class Store {
   @observable json: string = "{}";
   @observable startedEditingData = false;
 
+  @action async restoreIfExist() {
+    const response = await fetch(`/api/values/${this.id}`);
+    if (!response.ok) {
+      return;
+    }
+    const { source, schema, value } = await response.json();
+    runInAction(() => {
+      this.typescript = source;
+      this.schema = schema;
+      this.json = value;
+      this.startedEditingData = true;
+    });
+  }
+
   @computed get editorLink() {
     return `/${this.id}/editJson`;
   }

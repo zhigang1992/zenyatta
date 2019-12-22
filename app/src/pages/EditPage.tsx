@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import NavigationBar from "../components/NavigationBar";
 import Editor from "../components/Editor";
 import LeftSideBar from "../components/LeftSideBar";
@@ -8,6 +8,9 @@ import { useParams } from "react-router-dom";
 const EditPage = () => {
   const { editorHash } = useParams<{ editorHash: string }>();
   const store = useRef(new Store(editorHash)).current;
+  useEffect(() => {
+    store.restoreIfExist().catch();
+  }, [store]);
   return (
     <StoreContext.Provider value={store}>
       <div className="h-screen flex flex-col">

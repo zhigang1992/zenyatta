@@ -37,7 +37,7 @@ const PublishButton = () => {
   const store = useContext(StoreContext);
   const [publishedKey, setPublishedKey] = useState<string>();
   return (
-    <div className="relative">
+    <>
       <button
         className="nav-btn"
         onClick={async () => {
@@ -85,7 +85,7 @@ const PublishButton = () => {
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 
