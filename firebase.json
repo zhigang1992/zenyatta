@@ -9,12 +9,24 @@
   "hosting": {
     "predeploy": "yarn workspace @zenyatta/app build",
     "public": "app/build",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
+      {
+        "source": "/api/identifiers",
+        "function": "identifiers"
+      },
+      {
+        "source": "/api/schema",
+        "function": "schema"
+      },
+      {
+        "source": "/api/values",
+        "function": "json"
+      },
+      {
+        "source": "/api/values",
+        "function": "json"
+      },
       {
         "source": "**",
         "destination": "/index.html"
