@@ -12,27 +12,6 @@ const ActionButton = () => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [selections, setSelections] = useState<string[]>([]);
-  const getIds = useCallback(async (): Promise<string[]> => {
-    const response = await fetch("/api/identifiers", {
-      method: "POST",
-      body: store.typescript
-    });
-    return await response.json();
-  }, [store]);
-  const generateSchema = useCallback(
-    async (root: string) => {
-      const schema = await fetch("/api/schema", {
-        method: "POST",
-        body: store.typescript,
-        headers: {
-          SchemaRootType: root
-        }
-      });
-      store.schema = JSON.stringify(await schema.json(), null, 4);
-      history.push("./jsonSchema");
-    },
-    [store, history]
-  );
   const dismiss = useCallback(() => {
     setSelections([]);
     setLoading(false);
@@ -63,13 +42,14 @@ const ActionButton = () => {
             onClick={async () => {
               try {
                 setLoading(true);
-                const result = await getIds();
+                const result = await store.getIdentifiers();
                 if (result.length === 0) {
                   alert("You need to export at least one type");
                   return;
                 }
                 if (result.length === 1) {
-                  await generateSchema(result[0]);
+                  await store.generateSchema(result[0]);
+                  history.push("./jsonSchema");
                 } else {
                   setSelections(result);
                 }
@@ -99,7 +79,8 @@ const ActionButton = () => {
                     e.preventDefault();
                     try {
                       setSelections([]);
-                      await generateSchema(selection);
+                      await store.generateSchema(selection);
+                      history.push("./jsonSchema");
                     } catch (e) {
                       alert(e.message);
                       setLoading(false);

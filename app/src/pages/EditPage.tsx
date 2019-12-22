@@ -3,9 +3,11 @@ import NavigationBar from "../components/NavigationBar";
 import Editor from "../components/Editor";
 import LeftSideBar from "../components/LeftSideBar";
 import { Store, StoreContext } from "../mobx/store";
+import { useParams } from "react-router-dom";
 
 const EditPage = () => {
-  const store = useRef(new Store()).current;
+  const { editorHash } = useParams<{ editorHash: string }>();
+  const store = useRef(new Store(editorHash)).current;
   return (
     <StoreContext.Provider value={store}>
       <div className="h-screen flex flex-col">

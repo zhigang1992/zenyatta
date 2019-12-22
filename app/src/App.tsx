@@ -8,7 +8,7 @@ const App: React.FC = () => {
     <Provider>
       <Router>
         <Switch>
-          <Route path="/start/:startWith">
+          <Route path="/:editorHash/:startWith">
             <EditPage />
           </Route>
         </Switch>

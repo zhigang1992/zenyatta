@@ -14,7 +14,7 @@ const ActionButton = () => {
       <button
         className="nav-btn"
         onClick={() => {
-          store.startedEditingData = true;
+          store.startedEditing().catch(e => alert(e.message));
           history.push("./editJson");
         }}
       >
