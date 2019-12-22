@@ -50,17 +50,21 @@ export class Store {
   @observable startedEditingData = false;
 
   @action async restoreIfExist() {
-    const response = await fetch(`/api/values/${this.id}`);
-    if (!response.ok) {
-      return;
+    try {
+      const response = await fetch(`/api/values/${this.id}`);
+      if (!response.ok) {
+        return;
+      }
+      const { source, schema, value } = await response.json();
+      runInAction(() => {
+        this.typescript = source;
+        this.schema = schema;
+        this.json = value;
+        this.startedEditingData = true;
+      });
+    } catch (e) {
+      console.log(`${this.id} does not exist previously`);
     }
-    const { source, schema, value } = await response.json();
-    runInAction(() => {
-      this.typescript = source;
-      this.schema = schema;
-      this.json = value;
-      this.startedEditingData = true;
-    });
   }
 
   @computed get editorLink() {
