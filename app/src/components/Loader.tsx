@@ -1,17 +1,12 @@
-import "./Loader.css";
 import React from "react";
 
 const Loader = () => (
-  <div className="lds-roller self-center">
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-    <div />
-  </div>
+  <img
+    alt="Loading..."
+    src={require("../assets/loading-spin.svg")}
+    width={30}
+    height={30}
+  />
 );
 
 export default Loader;

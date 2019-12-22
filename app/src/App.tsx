@@ -1,19 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import TypeScriptPage from "./pages/TypeScriptPage";
-import { Store, StoreContext } from "./mobx/store";
+import EditPage from "./pages/EditPage";
+import { Provider } from "react-slot-fill";
 
 const App: React.FC = () => {
   return (
-    <StoreContext.Provider value={new Store()}>
+    <Provider>
       <Router>
         <Switch>
           <Route path="/start/:startWith">
-            <TypeScriptPage />
+            <EditPage />
           </Route>
         </Switch>
       </Router>
-    </StoreContext.Provider>
+    </Provider>
   );
 };
 

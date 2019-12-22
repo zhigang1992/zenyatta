@@ -20,11 +20,14 @@ function getTypeDefIdentifiers(sourceFile: ts.SourceFile): ts.Identifier[] {
   function getIdsFromNode(n: ts.Node | ts.SourceFile): ts.Identifier[] {
     const ids: ts.Identifier[] = [];
     n.getChildren().forEach(n => {
-      if (
+      const isExported = n.modifiers?.some(
+        mod => mod.kind === ts.SyntaxKind.ExportKeyword
+      );
+      const isRightType =
         n.kind === ts.SyntaxKind.InterfaceDeclaration ||
         n.kind === ts.SyntaxKind.EnumDeclaration ||
-        n.kind === ts.SyntaxKind.TypeAliasDeclaration
-      ) {
+        n.kind === ts.SyntaxKind.TypeAliasDeclaration;
+      if (isExported && isRightType) {
         ids.push(
           n.getChildren().find(n => ts.isIdentifier(n)) as ts.Identifier
         );
@@ -69,7 +72,7 @@ function generateSchema(sourceCode: string, idName: string) {
     type: idName
   });
   const schema = schemaGenerator.createSchema(idName);
-  return JSON.stringify(schema, null, 4);
+  return schema;
 }
 
 export const schema = functions.https.onRequest(async (req, resp) => {
