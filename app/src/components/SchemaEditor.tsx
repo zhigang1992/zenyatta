@@ -44,6 +44,11 @@ const SchemaEditor = observer(() => {
         onChange={value => {
           store.schema = value;
         }}
+        editorWillMount={editor => {
+          editor.languages.json.jsonDefaults.setDiagnosticsOptions({
+            validate: true
+          });
+        }}
       />
     </div>
   );

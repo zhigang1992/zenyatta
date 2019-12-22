@@ -38,6 +38,7 @@ const JsonEditor = observer(() => {
         editorWillMount={editor => {
           const schema = JSON.parse(store.schema);
           editor.languages.json.jsonDefaults.setDiagnosticsOptions({
+            validate: true,
             schemas: [
               {
                 uri: schema["$schema"],
