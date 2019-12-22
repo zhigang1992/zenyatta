@@ -43,9 +43,11 @@ const PublishButton = () => {
         onClick={async () => {
           try {
             setLoading(true);
+            store.verifyJSONData();
             setPublishedKey(await store.saveToCloud());
             setLoading(false);
           } catch (e) {
+            alert(e.message);
             setLoading(false);
           }
         }}

@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { action, computed, observable, runInAction } from "mobx";
+import Ajv from "ajv";
 
 const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
 
@@ -91,6 +92,15 @@ export class Store {
     runInAction(() => {
       this.schema = schema;
     });
+  }
+
+  verifyJSONData() {
+    const ajv = new Ajv();
+    const value = JSON.parse(this.json);
+    const valid = ajv.validate(JSON.parse(this.schema), value);
+    if (!valid) {
+      throw new Error("Your json value does not confirm to the schema");
+    }
   }
 
   @action

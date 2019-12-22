@@ -19,6 +19,7 @@ const Item = (props: { active: boolean; title: string; to: string }) => {
       className={`flex mb-3 rounded hover:bg-gray-200
        h-10 cursor-pointer items-center p-3 -ml-3 
        hover:text-gray-900 text-gray-600 font-medium
+       no-underline
        ${props.active && "bg-gray-200"}
        `}
     >
