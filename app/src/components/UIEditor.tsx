@@ -5,9 +5,11 @@ import { StoreContext } from "../mobx/store";
 import { Fill } from "react-slot-fill";
 import { navigationBarItemSlot } from "./NavigationBar";
 import PublishButton from "./PublishButton";
+import { useHistory } from "react-router-dom";
 
 const UIEditor = () => {
   const store = useContext(StoreContext);
+  const history = useHistory();
 
   const onReceiveMessage = useCallback(
     ({ data }: MessageEvent) => {
@@ -21,7 +23,12 @@ const UIEditor = () => {
   return (
     <div className="flex flex-1 overflow-scroll">
       <Fill name={navigationBarItemSlot}>
-        <button className="nav-btn mr-3">Edit with JSON</button>
+        <button
+          className="nav-btn mr-3"
+          onClick={() => history.push("./editJson")}
+        >
+          Edit with JSON
+        </button>
         <PublishButton />
       </Fill>
       <IframeComm

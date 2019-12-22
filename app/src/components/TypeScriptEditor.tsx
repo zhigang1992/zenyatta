@@ -33,35 +33,31 @@ const ActionButton = () => {
   return (
     <Fill name={navigationBarItemSlot}>
       <div className="relative">
-        {loading ? (
-          <Loader />
-        ) : (
-          <button
-            className="nav-btn"
-            disabled={loading}
-            onClick={async () => {
-              try {
-                setLoading(true);
-                const result = await store.getIdentifiers();
-                if (result.length === 0) {
-                  alert("You need to export at least one type");
-                  return;
-                }
-                if (result.length === 1) {
-                  await store.generateSchema(result[0]);
-                  history.push("./jsonSchema");
-                } else {
-                  setSelections(result);
-                }
-              } catch (e) {
-                alert(e.message);
-                setLoading(false);
+        <button
+          className="nav-btn"
+          disabled={loading}
+          onClick={async () => {
+            try {
+              setLoading(true);
+              const result = await store.getIdentifiers();
+              if (result.length === 0) {
+                alert("You need to export at least one type");
+                return;
               }
-            }}
-          >
-            Generate Schema
-          </button>
-        )}
+              if (result.length === 1) {
+                await store.generateSchema(result[0]);
+                history.push("./jsonSchema");
+              } else {
+                setSelections(result);
+              }
+            } catch (e) {
+              alert(e.message);
+              setLoading(false);
+            }
+          }}
+        >
+          {loading ? <Loader /> : <span>Generate Schema</span>}
+        </button>
         {selections.length > 0 && (
           <>
             <button

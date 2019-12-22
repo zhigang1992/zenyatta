@@ -8,9 +8,8 @@ const NavigationBar = () => {
     <div className="h-16 border-b border-gray-300 bg-gray-100">
       <div className="container mx-auto h-full flex items-center justify-between">
         <div>Logo</div>
-        <div>
-          <Slot name={navigationBarItemSlot} />
-        </div>
+        <div className="flex-1" />
+        <Slot name={navigationBarItemSlot} />
       </div>
     </div>
   );

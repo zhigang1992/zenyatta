@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { action, observable, runInAction } from "mobx";
+import { action, computed, observable, runInAction } from "mobx";
 
 const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
 
@@ -48,6 +48,14 @@ export class Store {
   @observable json: string = "{}";
   @observable startedEditingData = false;
 
+  @computed get editorLink() {
+    return `/${this.id}/editJson`;
+  }
+
+  jsonAPILink(key: string) {
+    return `/api/json/${key}`;
+  }
+
   async getIdentifiers() {
     const response = await fetch("/api/identifiers", {
       method: "POST",
@@ -72,8 +80,7 @@ export class Store {
   }
 
   @action
-  async startedEditing() {
-    this.startedEditingData = true;
+  async saveToCloud() {
     const response = await fetch(`/api/values/${this.id}`, {
       method: "POST",
       body: JSON.stringify({
@@ -88,6 +95,13 @@ export class Store {
     if (!response.ok) {
       throw new Error(response.statusText);
     }
+    return (await response.json()).retrieveKey;
+  }
+
+  @action
+  async startedEditing() {
+    this.startedEditingData = true;
+    await this.saveToCloud();
   }
 }
 
