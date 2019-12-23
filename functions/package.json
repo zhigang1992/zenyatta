@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tsc",
-    "serve": "firebase serve --only functions",
-    "start": "firebase emulators:start --only functions",
-    "deploy": "firebase deploy --only functions",
+    "emulate": "firebase emulators:start --only functions,firestore",
+    "start": "concurrently \"yarn tsc -w\" \"yarn emulate\"",
     "logs": "firebase functions:log"
   },
   "engines": {
@@ -21,7 +20,8 @@
     "typescript": "~3.7.2"
   },
   "devDependencies": {
-    "firebase-functions-test": "^0.1.7"
+    "firebase-functions-test": "^0.1.7",
+    "concurrently": "^5.0.2"
   },
   "private": true
 }
