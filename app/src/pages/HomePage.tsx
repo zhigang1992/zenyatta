@@ -82,7 +82,7 @@ function IntroVideo() {
       >
         <source src={require("../assets/demo.mkv")} type="video/mkv" />
         <source src={require("../assets/demo.mov")} type="video/mov" />
-        <source src={require("../assets/demo.mp4")} type="video/mp4" />
+        {/*<source src={require("../assets/demo.mp4")} type="video/mp4" />*/}
       </video>
     </div>
   );
