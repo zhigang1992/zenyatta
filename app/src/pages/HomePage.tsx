@@ -71,18 +71,18 @@ function ProjectInfo() {
 function IntroVideo() {
   return (
     <div
-      className="flex-1 flex rounded-lg overflow-hidden shadow-lg bg-black"
+      className="flex-1 flex rounded-lg overflow-hidden shadow-lg"
       style={{ height: 360 }}
     >
-      <video
-        className="object-center object-contain"
+      <iframe
+        title="Demo Video"
         width="100%"
         height="100%"
-        controls={true}
-      >
-        <source src={require("../assets/demo.mov")} type="video/quicktime" />
-        <source src={require("../assets/demo.mkv")} type="video/mp4" />
-      </video>
+        src="https://www.youtube.com/embed/gpXOlJHTS-g"
+        frameBorder={0}
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen={true}
+      />
     </div>
   );
 }
