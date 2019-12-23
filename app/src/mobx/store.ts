@@ -36,7 +36,7 @@ export interface User {
   
   gender?: Gender
 
-  Hobbies: Hobby[]
+  hobbies: Hobby[]
 }
 `;
 
