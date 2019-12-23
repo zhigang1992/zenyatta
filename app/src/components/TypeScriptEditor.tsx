@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 import Loader from "./Loader";
 import { Fill } from "react-slot-fill";
 import { navigationBarItemSlot } from "./NavigationBar";
+import { captureException } from "@sentry/browser";
 
 const ActionButton = () => {
   const store = useContext(StoreContext);
@@ -53,6 +54,7 @@ const ActionButton = () => {
             } catch (e) {
               alert(e.message);
               setLoading(false);
+              captureException(e);
             }
           }}
         >
@@ -80,6 +82,7 @@ const ActionButton = () => {
                     } catch (e) {
                       alert(e.message);
                       setLoading(false);
+                      captureException(e);
                     }
                   }}
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-800 hover:text-white focus:outline-none text-left w-full"

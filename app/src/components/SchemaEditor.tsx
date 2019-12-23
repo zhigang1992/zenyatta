@@ -5,6 +5,7 @@ import React, { useContext } from "react";
 import { observer } from "mobx-react";
 import { StoreContext } from "../mobx/store";
 import MonacoEditor from "react-monaco-editor";
+import { captureException } from "@sentry/browser";
 
 const ActionButton = () => {
   const history = useHistory();
@@ -14,7 +15,10 @@ const ActionButton = () => {
       <button
         className="nav-btn"
         onClick={() => {
-          store.startedEditing().catch(e => alert(e.message));
+          store.startedEditing().catch(e => {
+            alert(e.message);
+            captureException(e);
+          });
           history.push("./editJson");
         }}
       >

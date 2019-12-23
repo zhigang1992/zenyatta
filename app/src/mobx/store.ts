@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { action, computed, observable, runInAction } from "mobx";
 import Ajv from "ajv";
+import { captureException } from "@sentry/browser";
 
 const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
 

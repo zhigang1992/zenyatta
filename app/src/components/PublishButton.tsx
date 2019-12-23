@@ -2,6 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import Loader from "./Loader";
 import { StoreContext } from "../mobx/store";
 import "animate.css/animate.min.css";
+import { captureException } from "@sentry/browser";
 
 const Link = (props: { label: string; value: string }) => {
   const input = useRef<HTMLInputElement>(null);
@@ -74,6 +75,7 @@ const PublishButton = () => {
           } catch (e) {
             alert(e.message);
             setLoading(false);
+            captureException(e);
           }
         }}
       >
