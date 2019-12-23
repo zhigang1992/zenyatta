@@ -75,6 +75,7 @@ const SchemaPlaceholder = `{
         }
     }
 }`;
+
 export class Store {
   constructor(id: string) {
     this.id = id;

@@ -80,9 +80,8 @@ function IntroVideo() {
         height="100%"
         controls={true}
       >
-        <source src={require("../assets/demo.mkv")} type="video/mkv" />
-        <source src={require("../assets/demo.mov")} type="video/mov" />
-        {/*<source src={require("../assets/demo.mp4")} type="video/mp4" />*/}
+        <source src={require("../assets/demo.mov")} type="video/quicktime" />
+        <source src={require("../assets/demo.mkv")} type="video/mp4" />
       </video>
     </div>
   );
