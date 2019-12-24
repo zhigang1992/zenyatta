@@ -27,28 +27,36 @@
     <div id="app" style="padding-top: 20px; padding-left: 30px"></div>
     <script>
       window.addEventListener("message", message => {
-        const Form = JSONSchemaForm.default;
-        const { json, schema } = JSON.parse(message.data);
+        try {
+          const Form = JSONSchemaForm.default;
+          const { json, schema, uiSchema } = JSON.parse(message.data);
 
-        const element = React.createElement(Form, {
-          schema: JSON.parse(schema),
-          formData: JSON.parse(json),
-          onChange: async e => {
-            window.parent.postMessage(
-              {
-                source: "editUIIFrame",
-                type: "formDataUpdate",
-                payload: e.formData
-              },
-              "*"
-            );
-          },
-          children: React.createElement("button", {
-            type: "submit",
-            style: { display: "none" }
-          })
-        });
-        ReactDOM.render(element, document.getElementById("app"));
+          const element = React.createElement(Form, {
+            schema: JSON.parse(schema),
+            uiSchema: JSON.parse(uiSchema),
+            formData: JSON.parse(json),
+            onChange: async e => {
+              window.parent.postMessage(
+                {
+                  source: "editUIIFrame",
+                  type: "formDataUpdate",
+                  payload: e.formData
+                },
+                "*"
+              );
+            },
+            children: React.createElement("button", {
+              type: "submit",
+              style: { display: "none" }
+            })
+          });
+          ReactDOM.render(element, document.getElementById("app"));
+        } catch (e) {
+          document.getElementById("app").innerHTML =
+            "<h4 style='color: red'>Error: <br />" +
+            e.message +
+            "<br /><br /><br />Please check your form settings</h4>";
+        }
       });
     </script>
   </body>

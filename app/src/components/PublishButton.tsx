@@ -70,7 +70,7 @@ const PublishButton = () => {
           try {
             setLoading(true);
             store.verifyJSONData();
-            setPublishedKey(await store.saveToCloud());
+            setPublishedKey(await store.publishJSON());
             setLoading(false);
           } catch (e) {
             alert(e.message);

@@ -1,7 +1,6 @@
 import { createContext } from "react";
 import { action, computed, observable, runInAction } from "mobx";
 import Ajv from "ajv";
-import { captureException } from "@sentry/browser";
 
 const TypescriptPlaceholder = `// This is where you can paste in your TypeScript interfaces
 
@@ -86,6 +85,7 @@ export class Store {
   @observable typescript = TypescriptPlaceholder;
   @observable schema = SchemaPlaceholder;
   @observable json: string = "{}";
+  @observable formSettings: string = "{}";
   @observable startedEditingData = false;
 
   @action async restoreIfExist() {
@@ -94,11 +94,16 @@ export class Store {
       if (!response.ok) {
         return;
       }
-      const { source, schema, value } = await response.json();
+      const { source, schema, value, formSettings } = await response.json();
       runInAction(() => {
         this.typescript = source;
         this.schema = schema;
-        this.json = value;
+        if (value) {
+          this.json = value;
+        }
+        if (formSettings) {
+          this.formSettings = formSettings;
+        }
         this.startedEditingData = true;
       });
     } catch (e) {
@@ -147,14 +152,37 @@ export class Store {
   }
 
   @action
-  async saveToCloud() {
+  async saveSchema() {
+    await this.saveToCloud(
+      JSON.stringify({
+        source: this.typescript,
+        schema: this.schema
+      })
+    );
+  }
+
+  @action
+  async saveFormSettings() {
+    JSON.parse(this.formSettings);
+    await this.saveToCloud(
+      JSON.stringify({
+        formSettings: this.formSettings
+      })
+    );
+  }
+
+  @action async publishJSON() {
+    return await this.saveToCloud(
+      JSON.stringify({
+        value: this.json
+      })
+    );
+  }
+
+  private async saveToCloud(body: string) {
     const response = await fetch(`/api/values/${this.id}`, {
       method: "POST",
-      body: JSON.stringify({
-        source: this.typescript,
-        schema: this.schema,
-        value: this.json
-      }),
+      body,
       headers: {
         "Content-Type": "application/json"
       }
@@ -168,7 +196,7 @@ export class Store {
   @action
   async startedEditing() {
     this.startedEditingData = true;
-    await this.saveToCloud();
+    await this.saveSchema();
   }
 }
 

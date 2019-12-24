@@ -22,7 +22,7 @@ export const values = functions.https.onRequest(async (req, resp) => {
     .collection("values")
     .doc(key);
   if (req.method === "POST") {
-    await ref.set(req.body);
+    await ref.set(req.body, { merge: true });
     resp.json({ retrieveKey: key });
   } else {
     resp.json((await ref.get()).data());
