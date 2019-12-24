@@ -4,9 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>UI Editor</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.production.min.js" integrity="sha256-Ef0vObdWpkMAnxp39TYSLVS/vVUokDE8CDFnx7tjY6U=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js" integrity="sha256-zuSDvIPhgPCvDFw3HdbA58QUOOGxPbs4llUvBOPxvjY=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-jsonschema-form@1.8.1/lib/index.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.production.min.js"
+      integrity="sha256-Ef0vObdWpkMAnxp39TYSLVS/vVUokDE8CDFnx7tjY6U="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.production.min.js"
+      integrity="sha256-zuSDvIPhgPCvDFw3HdbA58QUOOGxPbs4llUvBOPxvjY="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-jsonschema-form@1.8.1/dist/react-jsonschema-form.js" integrity="sha256-gNIwP9FeJhmvYRRbM6WJJJKh4uYLvcZ/1X9/6Q/nCmY=" crossorigin="anonymous"></script>
     <link
       rel="stylesheet"
       href="https://bootswatch.com/3/flatly/bootstrap.min.css"
@@ -18,8 +26,8 @@
   <body>
     <div id="app" style="padding-top: 20px; padding-left: 30px"></div>
     <script>
-      const Form = JSONSchemaForm.default;
       window.addEventListener("message", message => {
+        const Form = JSONSchemaForm.default;
         const { json, schema } = JSON.parse(message.data);
 
         const element = React.createElement(Form, {
