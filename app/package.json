@@ -35,7 +35,7 @@
   "scripts": {
     "build:css:prod": "NODE_ENV=production postcss src/tailwind.css -o src/tailwind.production.css",
     "watch:css": "postcss -w src/tailwind.css -o src/tailwind.development.css",
-    "build:site": "react-app-rewired build",
+    "build:site": "react-app-rewired --max_old_space_size=4096 build",
     "watch:site": "react-app-rewired start",
     "start": "concurrently \"yarn watch:css\" \"yarn watch:site\"",
     "build": "yarn build:css:prod && yarn build:site",
