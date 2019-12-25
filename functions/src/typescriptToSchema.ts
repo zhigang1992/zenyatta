@@ -64,8 +64,8 @@ function generateSchema(sourceCode: string, idName: string) {
   createSource(sourceCode, filename);
   const schemaGenerator = createGenerator({
     tsconfig: prefix + "/tsconfig.json",
-    expose: "export",
-    topRef: true,
+    expose: "none",
+    topRef: false,
     jsDoc: "extended",
     sortProps: true,
     skipTypeCheck: true,
