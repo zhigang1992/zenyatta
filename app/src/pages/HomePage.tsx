@@ -9,6 +9,22 @@ const Header = () => (
     <div className="flex-1" />
     <a
       className="block flex items-center hover:text-gray-700 mr-5"
+      href="mailto:zhigang1992@gmail.com"
+    >
+      <svg
+        className="fill-current w-5 h-5"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <title>Email</title>
+        <path
+          d="M20 7.146c0-.667-.333-1.286-.905-1.62L10 1 .905 5.527C.381 5.86 0 6.479 0 7.146v9.092a1.91 1.91 0 001.905 1.905h16.19A1.91 1.91 0 0020 16.238V7.146zm-10 4.568l-7.65-5L10 2.904l7.65 3.81-7.65 5z"
+          fillRule="nonzero"
+        />
+      </svg>
+    </a>
+    <a
+      className="block flex items-center hover:text-gray-700 mr-5"
       href="https://twitter.com/zhigang1992"
     >
       <svg
@@ -45,13 +61,7 @@ function ProjectInfo() {
           building JSON configurations endpoint.
         </span>
       </h1>
-      <p
-        className="mt-6 leading-relaxed text-lg text-gray-600"
-        onClick={() => {
-          // @ts-ignore
-          adsfadfasdf();
-        }}
-      >
+      <p className="mt-6 leading-relaxed text-lg text-gray-600">
         Zenyatta is a service that will allow you to create OTA update JSON
         service in seconds, also allows your teammates to edit the same JSON at
         any time.

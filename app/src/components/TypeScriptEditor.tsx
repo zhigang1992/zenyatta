@@ -42,8 +42,7 @@ const ActionButton = () => {
               setLoading(true);
               const result = await store.getIdentifiers();
               if (result.length === 0) {
-                alert("You need to export at least one type");
-                return;
+                throw new Error("You need to export at least one type");
               }
               if (result.length === 1) {
                 await store.generateSchema(result[0]);

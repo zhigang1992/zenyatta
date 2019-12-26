@@ -79,6 +79,7 @@ const UIEditor = () => {
               href="https://react-jsonschema-form.readthedocs.io/en/latest/form-customization/"
               target="_blank"
               className="nav-btn mr-3"
+              rel="noopener noreferrer"
               style={{ lineHeight: "2.5em" }}
             >
               Documentations
