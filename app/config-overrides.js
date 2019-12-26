@@ -6,6 +6,11 @@ const {
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = override(
-  process.env.BUNDLE_VISUALIZE && addBundleVisualizer(),
-  addWebpackPlugin(new MonacoWebpackPlugin())
+  addWebpackPlugin(
+    new MonacoWebpackPlugin({
+      languages: ["json", "typescript"],
+      features: []
+    })
+  ),
+  process.env.BUNDLE_VISUALIZE && addBundleVisualizer()
 );
