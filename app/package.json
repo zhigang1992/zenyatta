@@ -34,13 +34,13 @@
   },
   "scripts": {
     "build:css:prod": "NODE_ENV=production postcss src/tailwind.css -o src/tailwind.production.css",
-    "watch:css": "postcss -w src/tailwind.css -o src/tailwind.development.css",
+    "build:css:dev": "postcss src/tailwind.css -o src/tailwind.development.css",
     "build:site": "react-app-rewired --max_old_space_size=4096 build",
-    "watch:site": "react-app-rewired start",
-    "start": "concurrently \"yarn watch:css\" \"yarn watch:site\"",
+    "start": "react-app-rewired start",
     "build": "yarn build:css:prod && yarn build:site",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "postinstall": "yarn build:css:dev"
   },
   "eslintConfig": {
     "extends": "react-app"
