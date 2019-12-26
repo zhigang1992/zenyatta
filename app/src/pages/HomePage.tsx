@@ -61,13 +61,7 @@ function ProjectInfo() {
           building JSON configurations endpoint.
         </span>
       </h1>
-      <p
-        className="mt-6 leading-relaxed text-lg text-gray-600"
-        onClick={() => {
-          // @ts-ignore
-          adsfadfasdf();
-        }}
-      >
+      <p className="mt-6 leading-relaxed text-lg text-gray-600">
         Zenyatta is a service that will allow you to create OTA update JSON
         service in seconds, also allows your teammates to edit the same JSON at
         any time.
