@@ -3,8 +3,7 @@ import React from "react";
 import {
   DarkTheme,
   DefaultTheme,
-  NavigationNativeContainer,
-  useTheme
+  NavigationNativeContainer
 } from "@react-navigation/native";
 import RecentPage from "./pages/recent/RecentPage";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -13,8 +12,7 @@ import MoreIcon from "../assets/more.svg";
 import RecentIcon from "../assets/recent.svg";
 import { useColorScheme } from "react-native-appearance";
 import { useAppTheme } from "./styles/Theme";
-import { TouchableOpacity } from "react-native";
-import AddIcon from "../assets/plus.svg";
+import AddIcon from "./pages/recent/components/AddIcon";
 
 type RecentStackParams = {
   recentRoot: undefined;
@@ -34,15 +32,7 @@ const RecentStackPage = () => (
       component={RecentPage}
       options={{
         title: "Zenyatta",
-        headerRight: ({ tintColor }) => (
-          <TouchableOpacity
-            css={`
-              margin: 0 10px;
-            `}
-          >
-            <AddIcon fill={tintColor} />
-          </TouchableOpacity>
-        )
+        headerRight: () => <AddIcon />
       }}
     />
   </RecentStack.Navigator>
