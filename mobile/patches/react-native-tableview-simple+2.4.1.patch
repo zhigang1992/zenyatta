@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-tableview-simple/src/components/Separator.js b/node_modules/react-native-tableview-simple/src/components/Separator.js
+index 3afcbd7..9c096f9 100644
+--- a/node_modules/react-native-tableview-simple/src/components/Separator.js
++++ b/node_modules/react-native-tableview-simple/src/components/Separator.js
+@@ -39,7 +39,7 @@ Separator.propTypes = {
+ };
+ 
+ Separator.defaultProps = {
+-  backgroundColor: '#FFF',
++  backgroundColor: 'transparent',
+   insetLeft: 15,
+   insetRight: 0,
+   isHidden: false,
