@@ -13,43 +13,65 @@ import MoreIcon from "../assets/more.svg";
 import RecentIcon from "../assets/recent.svg";
 import { useColorScheme } from "react-native-appearance";
 import { useAppTheme } from "./styles/Theme";
+import { TouchableOpacity } from "react-native";
+import AddIcon from "../assets/plus.svg";
 
-type NavStackParams = {
-  home: undefined;
+type RecentStackParams = {
+  recentRoot: undefined;
 };
 
-const NavStack = createStackNavigator<NavStackParams>();
-const ModalStack = createStackNavigator<ModelStackParams>();
+const RecentStack = createStackNavigator<RecentStackParams>();
 
 type ModelStackParams = {
-  homeNav: undefined;
+  homeTab: undefined;
 };
+const ModalStack = createStackNavigator<ModelStackParams>();
+
+const RecentStackPage = () => (
+  <RecentStack.Navigator>
+    <RecentStack.Screen
+      name={"recentRoot"}
+      component={RecentPage}
+      options={{
+        title: "Zenyatta",
+        headerRight: ({ tintColor }) => (
+          <TouchableOpacity
+            css={`
+              margin: 0 10px;
+            `}
+          >
+            <AddIcon fill={tintColor} />
+          </TouchableOpacity>
+        )
+      }}
+    />
+  </RecentStack.Navigator>
+);
 
 type HomeTabParams = {
   recent: undefined;
   more: undefined;
 };
-
-const Tab = createBottomTabNavigator<HomeTabParams>();
+const HomeTab = createBottomTabNavigator<HomeTabParams>();
 
 const HomeTabPage = () => {
   const { tabActive, tabInactive } = useAppTheme().colors;
   return (
-    <Tab.Navigator
+    <HomeTab.Navigator
       tabBarOptions={{
         activeTintColor: tabActive,
         inactiveTintColor: tabInactive
       }}
     >
-      <Tab.Screen
+      <HomeTab.Screen
         name={"recent"}
-        component={RecentPage}
+        component={RecentStackPage}
         options={{
           title: "History",
           tabBarIcon: ({ color }) => <RecentIcon fill={color} />
         }}
       />
-      <Tab.Screen
+      <HomeTab.Screen
         name={"more"}
         component={MorePage}
         options={{
@@ -57,19 +79,9 @@ const HomeTabPage = () => {
           tabBarIcon: ({ color }) => <MoreIcon fill={color} />
         }}
       />
-    </Tab.Navigator>
+    </HomeTab.Navigator>
   );
 };
-
-const HomeNav = () => (
-  <NavStack.Navigator>
-    <NavStack.Screen
-      name={"home"}
-      component={HomeTabPage}
-      options={{ title: "Zenyatta" }}
-    />
-  </NavStack.Navigator>
-);
 
 const Routes = () => {
   const scheme = useColorScheme();
@@ -78,11 +90,13 @@ const Routes = () => {
       theme={scheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <ModalStack.Navigator mode={"modal"} headerMode={"none"}>
-        <ModalStack.Screen name="homeNav" component={HomeNav} />
+        <ModalStack.Screen name="homeTab" component={HomeTabPage} />
       </ModalStack.Navigator>
     </NavigationNativeContainer>
   );
 };
 
-// Modal -> NavStack -> TabPage -> [Recent, More]
+// Modal
+//  -> TabPage
+//    -> [RecentNav, MoreNav]
 export default Routes;
