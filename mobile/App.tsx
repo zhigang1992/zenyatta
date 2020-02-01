@@ -1,11 +1,22 @@
 import React from "react";
 import Routes from "./src/Routes";
-import { AppearanceProvider } from "react-native-appearance";
+import { AppearanceProvider, useColorScheme } from "react-native-appearance";
+import { StatusBar } from "react-native";
+
+const AutoStatusBar = () => {
+  const scheme = useColorScheme();
+  return (
+    <StatusBar
+      barStyle={scheme === "dark" ? "light-content" : "dark-content"}
+    />
+  );
+};
 
 export default function App() {
   return (
     <AppearanceProvider>
       <Routes />
+      <AutoStatusBar />
     </AppearanceProvider>
   );
 }
