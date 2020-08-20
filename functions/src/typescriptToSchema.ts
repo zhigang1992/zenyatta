@@ -69,7 +69,8 @@ function generateSchema(sourceCode: string, idName: string) {
     jsDoc: "extended",
     sortProps: true,
     skipTypeCheck: true,
-    type: idName
+    type: idName,
+    additionalProperties: true
   });
   return schemaGenerator.createSchema(idName);
 }
