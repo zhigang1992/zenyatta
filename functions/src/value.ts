@@ -45,6 +45,7 @@ export const json = functions.https.onRequest(async (req, resp) => {
     // resp.sendStatus(404);
     resp.send(req.path);
   } else {
+    resp.setHeader("Access-Control-Allow-Headers", "*");
     resp.json(JSON.parse(snapshot.get("value" as keyof Value)));
   }
 });
